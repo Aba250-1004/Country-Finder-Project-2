@@ -3,6 +3,7 @@ const express= require('express');
 const app= express();
 const ejsLayouts= require('express-ejs-layouts');
 const session= require('express-session');
+const methodOverride = require('method-override');
 const passport= require('./config/ppConfig.js');
 const flash= require('connect-flash');
 const isLoggedIn= require('./middleware/isLoggedIn');
@@ -19,6 +20,7 @@ app.use(session({
 //passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(methodOverride('_method '))
 
 //flash middleware (goes AFTER session middleware, it uses sessions to store the message)
 app.use(flash());
@@ -47,10 +49,11 @@ app.get('/', (req, res)=> {
     res.render('home.ejs');
 })
 
+app.use('/search?',require('./controllers/search.js'))
+app.use('/profile',require('./controllers/profile.js'))
+
 //isLoggedIn is middleware that only applies to specific routes, access it because we required it at the top
-app.get('/profile', isLoggedIn, (req, res)=> {
-    res.render('profile.ejs');
-})
+
 
 app.listen(process.env.PORT, () => {
     console.log(`Listening to port ${process.env.PORT}`);

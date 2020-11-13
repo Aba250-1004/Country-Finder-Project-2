@@ -1,0 +1,8 @@
+<h1>Search By Country Code</h1>
+<%- include('../partials/searchBar.ejs') %> 
+
+<br>
+<form action="/search/code/results" method="get">
+    <input type="text" id="toSearch" name="toSearch" required>
+    <input type="submit" class="btn btn-secondary">
+</form>

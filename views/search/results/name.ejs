@@ -1,0 +1,24 @@
+<h1>Country Name Results</h1>
+<%- include('../../partials/searchBar.ejs') %> 
+
+<br>
+<div style='display: flex; flex-direction: row; width: 100%; height: 100%'>
+    <img src="<%= response[0].flag %>" height='300px' width="50%" style='display: inline; padding-right: 20px'>
+    <div style="width: 70%; height: 100%;">
+        <h1><%= response[0].name  %></h1>
+        <form method='POST' action='/profile/favorites'>
+            <input hidden type='hidden' name='name' value='<%= response[0].name %>'>
+            <button type='submit'>Add To Favorites</button>
+        </form>
+        <h3>Info:</h3>
+        <ul>
+            <li>Abbreviations: <%= response[0].alpha2Code %>, <%= response[0].alpha3Code %></li>
+            <li>Reigon: <%= response[0].region %></li>
+            <li>Continent: <%= response[0].subregion %> </li>
+            <li>Population: <%= response[0].population  %></li>
+            <li>Capital: <%= response[0].capital  %></li>
+            <li>Language: <%= response[0].languages[0].name  %></li>
+            <li>Timezones: <%= zones %> </li>
+        </ul>
+    </div>
+</div>

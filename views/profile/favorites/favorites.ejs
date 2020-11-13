@@ -1,0 +1,15 @@
+<h2><%= currentUser.name %>'s Favorties</h2>
+<form method="POST" action="/profile/favorites/?_method=PUT">
+    <label for="newName">Change Name</label>
+    <input type="text" id="newName" name="newName" required>
+    <input type="submit" value="Edit Your Name">
+</form>
+<ul>
+<% for (ind of info){ %> 
+    <li><%= ind.name  %></li>
+    <form method="POST" action="/profile/favorites/<%= ind.id %>/?_method=DELETE">
+        <input type="submit" value="Remove From Favorites">
+    </form>
+
+<% } %> 
+</ul>

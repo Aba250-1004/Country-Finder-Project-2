@@ -3,6 +3,7 @@ const bcrypt= require('bcrypt');
 const {
   Model
 } = require('sequelize');
+const db = require('.');
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
     /**
@@ -12,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.user.belongsToMany(models.country,{through:"CountryUser"})
     }
   };
   user.init({
