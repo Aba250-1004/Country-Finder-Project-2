@@ -1,4 +1,17 @@
-# Express Auth Boilerplate
+# Country Information App
+
+## How to use App
+Look for desried countries and see information about them and add to favorites and give countries nick names. 
+
+---
+
+## How to use API 
+* https://restcountries.eu/rest/v2/name/ Name Of Country
+* https://restcountries.eu/rest/v2/alpha/ Country Code
+
+---
+
+## Instructions
 * create a node app: npm init -y
 * .gitignore
 * set up express: npm i express

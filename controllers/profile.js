@@ -40,13 +40,13 @@ router.get('/', isLoggedIn, (req, res)=> {
 })
 
 router.get('/favorites',isLoggedIn,(req,res)=>{
+    listOfCountries = []
     db.CountryUser.findAll({
         where:{userId:req.user.id},
     })
-    .then(foundUserCountry => {
-        console.log(foundUserCountry)
-        res.render("profile/favorites/favorites2.ejs",{info:foundUserCountry})
-    })
+    .then(foundUserCountry => {   
+        res.render("profile/favorites/favorites2.ejs",{info:foundUserCountry})  
+    })    
 })
 
 router.post('/favorites',isLoggedIn,(req,res)=>{
