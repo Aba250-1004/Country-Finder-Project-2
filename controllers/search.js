@@ -40,13 +40,6 @@ router.get('/', (req, res)=> {
     res.render('search/home');
 })
 
-router.get('/results', (req, res)=> {
-    // res.send(req.query)
-    axios.get("https://restcountries.eu/rest/v2/all/")
-    .then(response => {
-        res.send(response)
-    })
-})
 
 router.get('/name',(req,res)=>{
     res.render('search/name.ejs')
