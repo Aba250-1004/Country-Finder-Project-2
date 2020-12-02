@@ -7,6 +7,7 @@ const flash= require('connect-flash');
 const axios = require('axios');
 const isLoggedIn= require('../middleware/isLoggedIn');
 const methodOverride = require('method-override');
+const { response } = require('express');
 
 router.use(express.urlencoded({extended: false}));
 router.use(methodOverride('_method '))
@@ -62,11 +63,35 @@ router.get('/name/results',(req,res)=>{
             where:{name:response.data[0].name}
         })
         .then(([createdFave,wasCreated]) => {
-            res.render('search/results/name.ejs',{response:response.data,zones:outputStr})
+            db.comment.findAll({
+                where:{
+                    countryCode:response.data[0].alpha2Code
+                }
+            })
+            .then(foundComments =>{
+                res.render('search/results/name.ejs',{response:response.data,zones:outputStr,comments:foundComments})
+            })
         })
     })
     .catch(err => {
         res.render('error.ejs')
+        axios.get("https://restcountries.eu/rest/v2/name/"+req.query.toSearch)
+        .then(response => {
+            
+        })
+    })
+})
+
+router.post('/code/results',(req,res)=>{
+    // res.send(req.query)
+    // res.send(req.body)
+    db.comment.create({
+        title:req.body.title,
+        content:req.body.comment,
+        countryCode:req.body.countryName
+    })
+    .then(response => {
+        res.redirect("/search/code")
     })
 })
 
@@ -91,7 +116,14 @@ router.get('/code/results',(req,res)=>{
             where:{name:response.data.name}
         })
         .then(([createdFave,wasCreated]) => {
-            res.render('search/results/code.ejs',{response:response.data,zones:outputStr})
+            db.comment.findAll({
+                where:{
+                    countryCode:response.data.alpha2Code
+                }
+            })
+            .then(foundComments =>{
+                res.render('search/results/code.ejs',{response:response.data,zones:outputStr,comments:foundComments})
+            })
         })
         // res.send(response.data)
     })
