@@ -42,9 +42,9 @@
 
 <ul>
 <% for (comment of comments){ %> 
-    <div>
-        <li><%= comment.title %></li>
-        <li><%= comment.content %></li>
+    <div class="form-group">
+        <h3><%= comment.title %></h3>
+        <p><%= comment.content %></p>
     </div>
     <hr>
 <% } %> 
