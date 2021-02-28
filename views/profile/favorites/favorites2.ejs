@@ -1,15 +1,28 @@
+<style>
+    .favorite{
+        display: flex;
+        flex-direction: row;
+        justify-content:space-between;
+    }
+</style>
 <h2><%= currentUser.name %>'s Favorties</h2>
-<ul>
+<div class="favorites">
 <% for (ind of info){ %> 
-    <li><%= ind.countryName  %></li>
-    <form method="POST" action="/profile/favorites/<%= ind.countryId %>/?_method=DELETE">
-        <input type="submit" class="btn" value="Remove From Favorites">
-    </form>
-    <form method="POST" action="/profile/favorites/?_method=PUT">
-        <input type="text" id="newName" name="newName" required>
-        <input type="hidden" name="countryId" id="countryId" value=<%= ind.countryId  %> >
-        <input type="submit" class="btn"  value="Edit Country Name">
-    </form>
+    <div class = "favorite">
+        
+        <h4><a href="/search/name/results?toSearch=<%= ind.countryName %>"><%= ind.countryName  %></a></h4>
+        
+        
+        <form method="POST" action="/profile/favorites/<%= ind.countryId %>/?_method=DELETE">
+            <input type="submit" class="btn" value="Remove From Favorites">
+        </form>
+        
+        <!-- <form method="POST" action="/profile/favorites/?_method=PUT">
+            <input type="text" id="newName" name="newName" required>
+            <input type="hidden" name="countryId" id="countryId" value=<%= ind.countryId  %> >
+            <input type="submit" class="btn"  value="Edit Country Name">
+        </form> -->
+    </div>
 <% } %> 
-</ul>
+</div>
 

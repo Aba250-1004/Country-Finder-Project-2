@@ -1,8 +1,23 @@
-<h5>Search By Country Name</h5>
-<%- include('../partials/searchBar.ejs') %> 
+<style>
+    div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+</style>
+
+<div>   
+    <h1>Search: Country Name</h1>
+</div>
+
+<div>
+    <%- include('../partials/searchBar.ejs') %>
+</div>
 
 <br>
-<form action="/search/name/results" method="get">
-    <input type="text" id="toSearch" name="toSearch" required>
-    <input type="submit" class="btn btn-primary">
-</form>
+<div>
+    <form action="/search/name/results" method="get">
+        <input type="text" id="toSearch" name="toSearch" required>
+        <input type="submit" class="btn btn-secondary">
+    </form>
+</div>

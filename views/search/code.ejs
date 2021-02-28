@@ -1,8 +1,31 @@
-<h5>Search By Country Code</h5>
-<%- include('../partials/searchBar.ejs') %> 
+<!-- <h5>Search By Country Code</h5>
 
 <br>
 <form action="/search/code/results" method="get">
     <input type="text" id="toSearch" name="toSearch" required>
     <input type="submit" class="btn btn-secondary">
-</form>
+</form> -->
+
+<style>
+    div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+</style>
+
+<div>   
+    <h1>Search: Country Code</h1>
+</div>
+
+<div>
+    <%- include('../partials/searchBar.ejs') %>
+</div>
+
+<br>
+<div>
+    <form action="/search/code/results" method="get">
+        <input type="text" id="toSearch" name="toSearch" required>
+        <input type="submit" class="btn btn-secondary">
+    </form>
+</div>
